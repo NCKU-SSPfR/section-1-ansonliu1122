@@ -22,4 +22,4 @@ def test_all_testcases(s, p, expected, solution):
 
 @pytest.mark.xfail
 def test_broken_solution(solution):
-    assert solution.isMatch("a", ".*.") == True
+    assert solution.isMatch("a", ".*.") == True #failed testcase
