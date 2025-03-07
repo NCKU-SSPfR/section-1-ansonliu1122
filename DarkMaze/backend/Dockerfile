@@ -6,13 +6,13 @@ WORKDIR /app
 COPY ./requirements.txt /app
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-
-COPY ./src /app/src
-COPY ./test /app/test
-COPY ./python3.11 /app/python3.11
-
 RUN useradd --create-home appuser
 RUN chown -R appuser:appuser /app
+
+COPY --chown=appuser:appuser ./src/ /app/src
+COPY --chown=appuser:appuser ./test/ /app/test
+COPY --chown=appuser:appuser ./python3.11/ /app/python3.11
+
 USER appuser
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000",  "--reload"]

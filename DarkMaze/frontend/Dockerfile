@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ./requirements.txt /app
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-COPY ./src /app/src 
+COPY --chown=appuser:appuser ./src/ /app/src 
 
 RUN useradd --create-home appuser
 RUN chown -R appuser:appuser /app
