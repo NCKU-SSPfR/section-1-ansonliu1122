@@ -5,7 +5,7 @@ FROM python:3.11
 RUN useradd --create-home appuser
 
 COPY ./requirements.txt /app
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 COPY ./src /app/src 
 
