@@ -10,7 +10,7 @@ RUN useradd --create-home appuser
 RUN chown -R appuser:appuser /app
 
 COPY --chown=appuser:appuser ./src/ /app/src
-COPY --chown=appuser:appuser ./test/ /app/test
+COPY --chown=appuser:appuser ./tests/ /app/tests
 COPY --chown=appuser:appuser ./python3.11/ /app/python3.11
 
 USER appuser
