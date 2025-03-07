@@ -2,8 +2,14 @@
 
 FROM python:3.11
 
-WORKDIR /app
-COPY ./ /app
+RUN useradd --create-home appuser
 
-RUN pip install -r requirements.txt
+COPY ./requirements.txt /app
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY ./src /app/src 
+
+RUN chown -R appuser:appuser /app
+USER appuser
+
 CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8088", "--reload"]
