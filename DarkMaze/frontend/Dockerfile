@@ -1,14 +1,14 @@
 # TODO: Install the frontend dependency package into the app folder inside the container.
 
 FROM python:3.11
-
-RUN useradd --create-home appuser
+WORKDIR /app
 
 COPY ./requirements.txt /app
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY ./src /app/src 
 
+RUN useradd --create-home appuser
 RUN chown -R appuser:appuser /app
 USER appuser
 
